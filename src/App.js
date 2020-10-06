@@ -22,6 +22,12 @@ import ReactHtmlParser from 'react-html-parser';
 import PageBreak from '@ckeditor/ckeditor5-page-break/src/pagebreak';
 import ReactToPrint from 'react-to-print';
 import Example from './text.js';
+import Link from '@ckeditor/ckeditor5-link/src/link';
+import UnlinkCommand from '@ckeditor/ckeditor5-link/src/unlinkcommand';
+import LinkCommand from '@ckeditor/ckeditor5-link/src/linkcommand';//can use ctrl + k 
+import AutoLink from '@ckeditor/ckeditor5-link/src/autolink';
+import LinkEditing from '@ckeditor/ckeditor5-link/src/linkediting';
+
 import './App.css';
 
 
@@ -63,9 +69,17 @@ class App extends React.Component {
                         className='ck-editor__editable_inline'
                         editor={ ClassicEditor }
                         config = {{
-                            plugins: [ Heading, Autoformat, Alignment, Font, Essentials, Clipboard , Paragraph, Bold, Italic, Underline, StrikeThrough, Highlight, Image, ImageToolbar, ImageUpload,ImageCaption, ImageInsert,ImageUpload, PageBreak ],
+                            plugins: [ Heading, 
+                                Link, UnlinkCommand, LinkCommand, AutoLink, LinkEditing,
+                                Autoformat, Alignment, 
+                                Font, Essentials, Clipboard , 
+                                Paragraph, 
+                                Bold, Italic, Underline, StrikeThrough, Highlight, 
+                                Image, ImageToolbar, ImageUpload,ImageCaption, ImageInsert,ImageUpload, 
+                                PageBreak ],
                             toolbar: [ 
-                                'heading', 
+                                'heading',
+                                'link', 
                                 '|',
                                 'alignment',
                                 'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor',
@@ -73,7 +87,7 @@ class App extends React.Component {
                                 'undo','redo','selectAll',         
                                 'bold', 'italic', 'underline', 'strikethrough',
                                 'imageInsert',
-                                'imageUpload',
+                                // 'imageUpload',
                                 'pageBreak'
                             ],
                             
@@ -93,10 +107,8 @@ class App extends React.Component {
                     <br></br>
                     <div>Content to Print:
                         <div>
-                            {this.state.addedData? <Example text={ReactHtmlParser(this.state.addData)}/>: ''}
-                            
+                            {this.state.addedData? <Example text={ReactHtmlParser(this.state.addData)}/>: ''}    
                         </div>
-                    {/* <button onClick={(e)=>window.print(this.state.addData)}>Print Preview</button> */}
                                         
                 </div>
                 </div>                
